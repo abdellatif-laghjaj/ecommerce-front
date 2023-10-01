@@ -74,7 +74,7 @@ export default function ProductBox({ _id, title, description, price, images }) {
           <Price>{price}dh</Price>
         </div>
         <PriceRow>
-          <Button block onClick={() => {notify(); addProduct(_id)}} primary outline>
+          <Button block onClick={() => {notify(); addProduct(_id)}} primary>
             Add to cart
           </Button>
           <Toaster/>
