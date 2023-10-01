@@ -142,7 +142,7 @@ export default function CartPage() {
       <Center>
         <ColumnsWrapper>
           <Box>
-            <h2>Cart</h2>
+            <h3>Cart</h3>
             {!cartProducts?.length && <div>Your cart is empty</div>}
             {products?.length > 0 && (
               <Table>
@@ -160,7 +160,7 @@ export default function CartPage() {
                         <ProductImageBox>
                           <img src={product.images[0]} alt="" />
                         </ProductImageBox>
-                        {product.title}
+                        <p>{product.title}</p>
                       </ProductInfoCell>
                       <td>
                         <Button onClick={() => lessOfThisProduct(product._id)}>
@@ -186,7 +186,9 @@ export default function CartPage() {
                   <tr>
                     <td></td>
                     <td></td>
-                    <td>${total}</td>
+                    <td style={{ fontWeight: "bold", padding: "10px 0 0 0", fontSize: "1.2rem" }}>
+                      Total: ${total}
+                    </td>
                   </tr>
                 </tbody>
               </Table>
@@ -194,7 +196,7 @@ export default function CartPage() {
           </Box>
           {!!cartProducts?.length && (
             <Box>
-              <h2>Order information</h2>
+              <h3>Order information</h3>
               <Input
                 type="text"
                 placeholder="Name"
@@ -239,7 +241,7 @@ export default function CartPage() {
                 name="country"
                 onChange={(ev) => setCountry(ev.target.value)}
               />
-              <Button black block onClick={goToPayment}>
+              <Button primary block onClick={goToPayment}>
                 Continue to payment
               </Button>
             </Box>
