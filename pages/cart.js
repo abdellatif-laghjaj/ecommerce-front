@@ -186,7 +186,13 @@ export default function CartPage() {
                   <tr>
                     <td></td>
                     <td></td>
-                    <td style={{ fontWeight: "bold", padding: "10px 0 0 0", fontSize: "1.2rem" }}>
+                    <td
+                      style={{
+                        fontWeight: "bold",
+                        padding: "10px 0 0 0",
+                        fontSize: "1.2rem",
+                      }}
+                    >
                       Total: ${total}
                     </td>
                   </tr>
