@@ -2,23 +2,24 @@ import styled from "styled-components";
 import Button from "@/components/Button";
 import CartIcon from "@/components/icons/CartIcon";
 import Link from "next/link";
-import {useContext} from "react";
-import {CartContext} from "@/components/CartContext";
+import { useContext } from "react";
+import { CartContext } from "@/components/CartContext";
 
 const ProductWrapper = styled.div`
-  
+  background-color: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
 `;
 
 const WhiteBox = styled(Link)`
-  background-color: #fff;
-  padding: 20px;
-  height: 120px;
-  text-align: center;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 10px;
-  img{
+  padding: 12px;
+  height: 100px;
+  text-align: center;
+  img {
     max-width: 100%;
     max-height: 80px;
   }
@@ -26,54 +27,50 @@ const WhiteBox = styled(Link)`
 
 const Title = styled(Link)`
   font-weight: normal;
-  font-size:.9rem;
-  color:inherit;
-  text-decoration:none;
-  margin:0;
+  font-size: 0.9rem;
+  color: inherit;
+  text-decoration: none;
+  margin: 0;
 `;
 
 const ProductInfoBox = styled.div`
   margin-top: 5px;
+  padding: 20px;
 `;
 
 const PriceRow = styled.div`
-  display: block;
-  @media screen and (min-width: 768px) {
-    display: flex;
-    gap: 5px;
-  }
-  align-items: center;
-  justify-content:space-between;
-  margin-top:2px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-top: 10px;
 `;
 
 const Price = styled.div`
   font-size: 1rem;
-  font-weight:400;
-  text-align: right;
-  @media screen and (min-width: 768px) {
-    font-size: 1.2rem;
-    font-weight:600;
-    text-align: left;
-  }
+  font-weight: 600;
+  text-align: left;
 `;
 
-export default function ProductBox({_id,title,description,price,images}) {
-  const {addProduct} = useContext(CartContext);
-  const url = '/product/'+_id;
+export default function ProductBox({ _id, title, description, price, images }) {
+  const { addProduct } = useContext(CartContext);
+  const url = "/product/" + _id;
   return (
     <ProductWrapper>
       <WhiteBox href={url}>
         <div>
-          <img src={images?.[0]} alt=""/>
+          <img
+            src="https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/77/9472942/1.jpg?7249"
+            alt=""
+          />
         </div>
       </WhiteBox>
       <ProductInfoBox>
-        <Title href={url}>{title}</Title>
+        <div style={{display: 'flex', justifyContent: 'space-between'}}>
+          <Title href={url}>{title.length > 10 ? title.substring(0, 30) + '...' : title}</Title>
+          <Price>{price}dh</Price>
+        </div>
         <PriceRow>
-          <Price>
-            ${price}
-          </Price>
           <Button block onClick={() => addProduct(_id)} primary outline>
             Add to cart
           </Button>
