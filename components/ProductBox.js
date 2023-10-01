@@ -4,6 +4,9 @@ import CartIcon from "@/components/icons/CartIcon";
 import Link from "next/link";
 import { useContext } from "react";
 import { CartContext } from "@/components/CartContext";
+import toast, { Toaster } from 'react-hot-toast';
+
+const notify = () => toast.success('Product added to cart');
 
 const ProductWrapper = styled.div`
   background-color: #ffffff;
@@ -60,20 +63,21 @@ export default function ProductBox({ _id, title, description, price, images }) {
       <WhiteBox href={url}>
         <div>
           <img
-            src="https://ng.jumia.is/unsafe/fit-in/500x500/filters:fill(white)/product/77/9472942/1.jpg?7249"
+            rc={images?.[0]} 
             alt=""
           />
         </div>
       </WhiteBox>
       <ProductInfoBox>
         <div style={{display: 'flex', justifyContent: 'space-between'}}>
-          <Title href={url}>{title.length > 10 ? title.substring(0, 30) + '...' : title}</Title>
+          <Title href={url}>{title.length > 30 ? title.substring(0, 30) + '...' : title}</Title>
           <Price>{price}dh</Price>
         </div>
         <PriceRow>
-          <Button block onClick={() => addProduct(_id)} primary outline>
+          <Button block onClick={() => {notify(); addProduct(_id)}} primary outline>
             Add to cart
           </Button>
+          <Toaster/>
         </PriceRow>
       </ProductInfoBox>
     </ProductWrapper>
