@@ -141,65 +141,74 @@ export default function CartPage() {
       <Header />
       <Center>
         <ColumnsWrapper>
-          <Box>
-            <h3>Cart</h3>
-            {!cartProducts?.length && <div>Your cart is empty</div>}
-            {products?.length > 0 && (
-              <Table>
-                <thead>
-                  <tr>
-                    <th>Product</th>
-                    <th>Quantity</th>
-                    <th>Price</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {products.map((product) => (
-                    <tr key={product._id}>
-                      <ProductInfoCell>
-                        <ProductImageBox>
-                          <img src={product.images[0]} alt="" />
-                        </ProductImageBox>
-                        <p>{product.title}</p>
-                      </ProductInfoCell>
-                      <td>
-                        <Button onClick={() => lessOfThisProduct(product._id)}>
-                          -
-                        </Button>
-                        <QuantityLabel>
-                          {
-                            cartProducts.filter((id) => id === product._id)
-                              .length
-                          }
-                        </QuantityLabel>
-                        <Button onClick={() => moreOfThisProduct(product._id)}>
-                          +
-                        </Button>
-                      </td>
-                      <td>
-                        $
-                        {cartProducts.filter((id) => id === product._id)
-                          .length * product.price}
-                      </td>
-                    </tr>
-                  ))}
-                  <tr>
-                    <td></td>
-                    <td></td>
-                    <td
-                      style={{
-                        fontWeight: "bold",
-                        padding: "10px 0 0 0",
-                        fontSize: "1.2rem",
-                      }}
-                    >
-                      Total: ${total}
-                    </td>
-                  </tr>
-                </tbody>
-              </Table>
-            )}
-          </Box>
+          {cartProducts?.length === 0 && (
+            <Box>
+              <h3>Cart</h3>
+              <div>Your cart is empty</div>
+            </Box>
+          )}
+
+{cartProducts?.length > 0 && (
+  <Box>
+  <h3>Cart</h3>
+  {!cartProducts?.length && <div>Your cart is empty</div>}
+  {products?.length > 0 && (
+    <Table>
+      <thead>
+        <tr>
+          <th>Product</th>
+          <th>Quantity</th>
+          <th>Price</th>
+        </tr>
+      </thead>
+      <tbody>
+        {products.map((product) => (
+          <tr key={product._id}>
+            <ProductInfoCell>
+              <ProductImageBox>
+                <img src={product.images[0]} alt="" />
+              </ProductImageBox>
+              <p>{product.title}</p>
+            </ProductInfoCell>
+            <td>
+              <Button onClick={() => lessOfThisProduct(product._id)}>
+                -
+              </Button>
+              <QuantityLabel>
+                {
+                  cartProducts.filter((id) => id === product._id)
+                    .length
+                }
+              </QuantityLabel>
+              <Button onClick={() => moreOfThisProduct(product._id)}>
+                +
+              </Button>
+            </td>
+            <td>
+              $
+              {cartProducts.filter((id) => id === product._id)
+                .length * product.price}
+            </td>
+          </tr>
+        ))}
+        <tr>
+          <td></td>
+          <td></td>
+          <td
+            style={{
+              fontWeight: "bold",
+              padding: "10px 0 0 0",
+              fontSize: "1.2rem",
+            }}
+          >
+            Total: ${total}
+          </td>
+        </tr>
+      </tbody>
+    </Table>
+  )}
+</Box>
+)}
           {!!cartProducts?.length && (
             <Box>
               <h3>Order information</h3>
