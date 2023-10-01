@@ -11,6 +11,8 @@ const StyledHeader = styled.header`
 const Logo = styled(Link)`
   color:#fff;
   text-decoration:none;
+  font-size: 20px;
+  font-wieght: bold;
   position: relative;
   z-index: 3;
 `;
@@ -69,11 +71,10 @@ export default function Header() {
     <StyledHeader>
       <Center>
         <Wrapper>
-          <Logo href={'/'}>Ecommerce</Logo>
+          <Logo href={'/'}>Amaximos</Logo>
           <StyledNav mobileNavActive={mobileNavActive}>
             <NavLink href={'/'}>Home</NavLink>
             <NavLink href={'/products'}>All products</NavLink>
-            <NavLink href={'/categories'}>Categories</NavLink>
             <NavLink href={'/account'}>Account</NavLink>
             <NavLink href={'/cart'}>Cart ({cartProducts.length})</NavLink>
           </StyledNav>
